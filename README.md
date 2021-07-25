@@ -1,5 +1,6 @@
-# lchs-meet
-Check IO System.
+# LCHS-Meet
+A Simple(?) Check IO System.
+
 ## Teacher
 Teachers can check students' check I/O time, release course ID, release answers of examination.
 ## Student
