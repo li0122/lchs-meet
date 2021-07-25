@@ -1,0 +1,90 @@
+<?php
+
+$ERRMSG = "";
+session_start();
+require '../apis/connect.php';
+
+$pdo->query("SET NAMES UTF8");
+if(!isset($_SESSION['id'])){
+	// logincheck
+    header('Location: ../login/index.php');
+    exit;
+}else{
+    $sql = "SELECT * FROM account WHERE id = '". $_SESSION['id'] ."'";
+    foreach ($pdo->query($sql) as $row) {
+        $account = $row['username'];
+        $name = $row['name'];
+        $permission = $row['permission'];
+    }
+}
+
+$pdo->query("SET NAMES UTF8");
+if(isset($_GET['msg'])){
+	$msg = $_GET['msg'];
+}else{
+	$msg= "";
+}
+
+?>
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>LCHS MEET - Build By li0122/xig1517</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header" class="alt">
+						<a href="index.php" class="logo"><strong>LCHS MEET</strong> <span>by li0122/xig1517</span></a>
+						<nav>
+							<a href="#menu">Menu</a>
+						</nav>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+						<ul class="links">
+							<li><a href="#">Build</a></li>
+							<li><a href="#">By</a></li>
+							<li><a href="#">王瓅</a></li>
+							<li><a href="#">朱晉岑</a></li>
+						</ul>
+						<ul class="actions stacked">
+							<li><a href="#" class="button primary fit">LCHS MEET</a></li>
+							<li><a href="../login/logout.php" class="button fit">LOGOUT</a></li>
+							<li><a href="../login/changePass.php" class="button fit">更改密碼</a></li>
+						</ul>
+					</nav>
+				<!-- Banner -->
+					<section id="banner" class="major">
+						<div class="inner">
+							<section>
+								<header class="major">
+									<h1 size="4">簽到/簽退表</h1>
+									<button onclick="window.location.href='sign.php?SIGNIN=1'">簽到</button>	
+									<button onclick="window.location.href='sign.php?SIGNOUT=1'">簽退</button>
+									<h4 size="2"><?php echo $msg; ?></h4>
+								</header>
+							</section>
+						</div>
+					</section>
+			</div>
+
+		<!-- Scripts -->
+			<script src="../assets/js/jquery.min.js"></script>
+			<script src="../assets/js/jquery.scrolly.min.js"></script>
+			<script src="../assets/js/jquery.scrollex.min.js"></script>
+			<script src="../assets/js/browser.min.js"></script>
+			<script src="../assets/js/breakpoints.min.js"></script>
+			<script src="../assets/js/util.js"></script>
+			<script src="../assets/js/main.js"></script>
+
+	</body>
+</html>

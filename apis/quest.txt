@@ -1,0 +1,52 @@
+login/appApis/login.php
+    - input : $_POST = {'account', 'password'} //帳號密碼
+    - output : json(
+                    'loginStatus' => true/false, //登入狀態
+                    'permission' => //登入身分
+                )
+
+student/showClass.php
+    - input : none
+    - output : json(
+                    'date'=> , //日期 Y-m-d
+                    'subject'=> , //科目 中文
+                    'teacherName'=> , //老師名稱 中文
+                    'start'=> , //上課時間 ex. 0800, 1410
+                    'end'=> , //下課時間
+                    'classID'=> , //課程ID
+                    'mode'=> //此課程進行狀態 mode=0空閒 mode=1上課中 mode=-1已下課
+                )
+
+student/sign.php
+    - input : $_POST = {'SIGNIN', 'SIGNOUT'} //簽到 簽退
+    - output : none
+
+teacher/addClass.php
+    - input : $_POST = {
+                        'ADD', //觸發按鈕
+                        'SUBJECT', //科目
+                        'DATE', //日期 Y-m-d
+                        'CLASS_TIME_H', //上課時間hour
+                        'CLASS_TIME_M', //上課時間min
+                        'AFTER_CLASS_TIME_H', //下課時間hour
+                        'AFTER_CLASS_TIME_M', //下課時間min
+                    }
+    - output : none
+
+teacher/beginClass.php
+    - input : $_POST = {
+                        'BEGIN', //觸發按鈕
+                        'classID', //該課程的ID
+                    }
+    - output : none
+
+teacher/viewMonitor.php
+    - input : $_POST = {
+                        'date', //日期 Y-m-d + 課程ID (以//分割)
+                    }
+    - output : json(
+                   $key."=>".$value."</br>"
+                   ...
+                   ...
+                   ... 
+                )
